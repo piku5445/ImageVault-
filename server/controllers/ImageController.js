@@ -1,5 +1,5 @@
 const Image=require("../models/image")
-const { uploadToCloudinary } = require("../helpers/cloudinaryHelpers")
+const { uploadCloudinary } = require("../helpers/cloudinaryHelpers")
 const UploadImage=async(req,res)=>{
     try{
         if(!req.file){
@@ -8,7 +8,7 @@ const UploadImage=async(req,res)=>{
                 message:"please select file to upload"
             })
         }
-        const {url,publicId}=await uploadToCloudinary(req.file.path)
+        const {url,publicId}=await uploadCloudinary(req.file.path)
         const newImage=new Image({
             url:url,
             publicId:publicId,
