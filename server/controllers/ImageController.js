@@ -28,4 +28,4 @@ const UploadImage=async(req,res)=>{
         console.error(e)
     }
 }
-module.export={UploadImage}
+module.exports={UploadImage}
