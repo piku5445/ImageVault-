@@ -91,5 +91,60 @@ const login=async(req,res)=>{
     console.error("error in login")
   }
 }
+const changePassword=async(req,res)=>{
+  try{
+     const userId=req.userInfo.userId
+     const {oldPassword,newPassword}=req.body
+     const user=await User.findById(userId);
+     if(!user){
+      return res.status(400).json({
+        success:false,
+        message:"user deos not exist"
+      })
+     }
+      //check if password is correct
+      const isPasswordMatched=await bcrypt.compare(oldPassword,user.password)
+      if(!isPasswordMatched){
+        res.status(400).json({
+          success:false,
+          message:"password is not correct"
+        })
+       //if password is corrext then hash the new password
 
-module.exports ={register,login}
+    
+ 
+
+      }
+      
+      const salt = await bcrypt.genSalt(10);
+
+      const newhashedPassword=await bcrypt.hash(newPassword,salt)
+      //  const updatedUser=User.collection.updateOne({_id:userId},{
+      //   $set:{
+      //     password:newhashedPassword
+      //   }
+      //  })
+      //  if(!updatedUser){
+      //   return res.status(400).json({
+      //     success:false,
+      //     message:"error in updating password "
+      //   })
+      //  }
+user.password=newhashedPassword
+await user.save()
+res.status(200).json({
+  success:true,
+  message:"password changed succesfully"
+})
+  }catch(e){
+    res.status(500).json({
+      success:false,
+      message:"error in changing the password",
+      
+    
+    })
+    console.log(e)
+  }
+}
+
+module.exports ={register,login,changePassword}

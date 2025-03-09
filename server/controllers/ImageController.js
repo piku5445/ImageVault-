@@ -28,4 +28,23 @@ const UploadImage=async(req,res)=>{
         console.error(e)
     }
 }
-module.exports={UploadImage}
+const fetchImages=async(req,res)=>{
+    try{
+        const images=await Image.find({});
+        if(images){
+            return res.status(200).json({
+                success:true,
+                data:images,
+                message:"image fetched successfully"
+            })
+        }
+
+    }
+    catch(e){
+        res.status(500).json({
+            success:false,
+            message:"error while fetching the images"
+        })
+    }
+}
+module.exports={UploadImage,fetchImages}
