@@ -47,7 +47,42 @@ const fetchImages=async(req,res)=>{
         })
     }
 }
+const fetchImagesController=async(req,res)=>{
+    try{
+     const page=parseInt(req.query.page)||1
+     const limit=parseInt(req.query.limit)||2;
+     const skip=(page-1)*limit
+     const sortBy=req.query.sortBy || "createdAt"
+     const totalImages=await Image.countDocuments()
+     const sortOrder=req.query.sortOrder==='asc' ? 1 :-1
+     const totalPages=Math.ceil(totalImages/limit);
+     const sortObj={};
+     sortObj[sortBy]=sortOrder;
+     const images=await Image.find().sort(sortObj).skip(skip).limit(limit)
+     if(images){
+        res.status(200).json({
+            success:true,
+            currentPage:page,
+            totalPages:totalPages,
+            totalImages:totalImages,
+            data:images,
+        })
+     }
 
+
+    }
+    catch(e){
+        res.status(500).json({
+            success:false,
+            message:"error while fetching the images"
+
+
+
+
+        })
+
+    }
+}
 
 const deleteImageController=async(req,res)=>{
     try{
@@ -72,7 +107,7 @@ const deleteImageController=async(req,res)=>{
         })
       }
       //check if the image is uploaded by the current user
-      if(image. uploadedBy.toString()!=userId){
+      if(image.uploadedBy.toString()!=userId){
         return  res.status(403).json({
           success:false,
           message:"you are not authorized to delete this image"
@@ -96,4 +131,4 @@ const deleteImageController=async(req,res)=>{
   
     }
   }
-module.exports={UploadImage,fetchImages, deleteImageController}
+module.exports={UploadImage,fetchImages, deleteImageController,fetchImagesController}
