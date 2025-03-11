@@ -4,6 +4,7 @@ import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link, useNavigate } from 'react-router-dom';
+
 function Register() {
  const navigate=useNavigate()
   const [Name, setName] = useState([]);
