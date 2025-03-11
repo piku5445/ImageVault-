@@ -1,0 +1,17 @@
+.login{
+    padding: 20px;
+    /* background: linear-gradient(rgba(0, 242, 255, 0.3), rgba(22, 167, 190, 0.3));
+    background-color: hsla(132, 53%, 40%, 0.3); 
+
+   */
+   background: rgba(255, 255, 255, 0.648);
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+/* Glow Effect on Hover */
+.login:hover {
+    border-color: #00ffcc; /* Neon Glow Color */
+    box-shadow: 0 0 15px #00ffcc; /* Glowing Effect */
+}

@@ -8,22 +8,25 @@ import {
   Card,
   CardContent,
 } from "@mui/material";
-import { Link } from "react-router-dom";
-
+import { Link ,useNavigate} from "react-router-dom";
+import "./Login.css";
 function LoginPage() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Email:", email);
-    console.log("Password:", password);
+    // console.log("Email:", email);
+    // console.log("Password:", password);
     // Add your authentication logic here
   };
 
   return (
-    <Container maxWidth="xs" sx={{ mt: 8 }}>
-      <Card sx={{ maxWidth: "100%" }}>
+    <Container
+     maxWidth="xs" sx={{ mt: 8 }}
+     >
+    
         <CardContent>
           <Box
             sx={{
@@ -31,6 +34,7 @@ function LoginPage() {
               flexDirection: "column",
               alignItems: "center",
             }}
+            className="login"
           >
             <Typography variant="h4" component="h1" gutterBottom>
               Login
@@ -67,12 +71,12 @@ function LoginPage() {
                 <Link to="/register">Register</Link>
               </Typography>
               <Typography variant="body2" align="center" sx={{ mt: 2 }}>
-               <a href="#">forgetPassword?</a>
+               <a href="#"  onClick={()=>navigate('/forget')}>forgetPassword?</a>
               </Typography>
             </form>
           </Box>
         </CardContent>
-      </Card>
+      
     </Container>
   );
 }

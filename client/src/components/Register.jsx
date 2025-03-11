@@ -3,18 +3,18 @@ import { Box, TextField, Button, FormControl, FormGroup, FormControlLabel, FormL
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 function Register() {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+ const navigate=useNavigate()
+  const [Name, setName] = useState([]);
+  const [email, setEmail] = useState([]);
+  const [password, setPassword] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Registration data:', {
       firstName,
-      lastName,
+      Name,
       email,
       password,
     });
@@ -23,7 +23,10 @@ function Register() {
 
   return (
     <Box sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <FormControl sx={{ width: '400px', padding: '20px', backgroundColor: '#f7f7f7', borderRadius: '10px' }}>
+      <FormControl
+      sx={{ width: '400px', padding: '20px', backgroundColor: '#f7f7f7', borderRadius: '15px', border: '2px solid rgba(102, 40, 40, 0.1)', color: 'rgb(0,0,0) bold'
+        
+       }}>
         <FormLabel sx={{ mb: 2 }}>
           <Typography component="h1" variant="h5">
             Register
@@ -37,8 +40,8 @@ function Register() {
             label=" Name"
             name="Name"
             autoComplete="family-name"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            value={Name}
+            onChange={(e) => setName(e.target.value)}
             sx={{ mb: 2 }}
           />
           <TextField

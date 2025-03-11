@@ -66,7 +66,7 @@ import Register from './components/register';
 import Home from "./components/Home";
 import Layout from "./components/Layout";
 import Header from "./components/Header";
-
+import Forget from "./components/forget";
 function BasicExample() {
   return (
     <Router>
@@ -92,6 +92,7 @@ function BasicExample() {
           <Route index element={<Home />} /> {/* Default route */}
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="forget" element={<Forget />} />
         </Route>
       </Routes>
     </Router>
