@@ -1,32 +1,42 @@
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Image from './components/Image';
-import Video from './components/Video';
+import { useState } from 'react';
+import axios from 'axios';
+import {BrowserRouter as Router, Route, Link, BrowserRouter,Routes} from 'react-router-dom';
+import Login from './components/Login';
+import Register from './components/register';
 function BasicExample() {
-  return (
-    <Form>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-<Image/>
-
-<Video/>
-    </Form>
+  // const[images,setImages]=useState([])
+  // axios.get('/api/website/image/get')
+  // .then(response => setImages(response.data))
+  // .catch(error => console.error(error));
+  return (<>
+  {/* <div>
+     {
+      images.map((image)=>{
+         <img src={image} alt="Preview" width={200} />
+      })
+    } 
+  </div> */}
+  <div>
+    {/* <BrowserRouter>
+    <Routes>
+    <Route path="/login" element={<Login/>} />
+    <Route path="/register" element={<Register/>} />
+    </Routes>
+    </BrowserRouter>
+    
+   */}
+   <Router>
+     <Link to="/login">Login</Link>
+     <Link to="/register">Register</Link>
+     <Routes>
+       <Route path="/login" element={<Login/>} />
+       <Route path="/register" element={<Register/>} />
+     </Routes>
+   </Router>
+  </div>
+ 
+    
+    </>
   );
 }
 
