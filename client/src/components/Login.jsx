@@ -53,10 +53,10 @@ function LoginPage() {
     console.log(user, password);
   };
 
-  const handleSubmit = async(event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (!user || !password) {
-        error();
+      error();
     } else {
       success();
     }
@@ -65,21 +65,38 @@ function LoginPage() {
       password,
     });
     // Add logic to handle form submission here
-    try{
-      const url="http://localhost:3000/api/website/user/login";
-      const response=await fetch(url,{
-        method:"POST",
-        headers:{
-          'content-type':'application/json'
+    try {
+      const url = "http://localhost:3000/api/website/user/login";
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          'content-type': 'application/json'
         },
-        body:JSON.stringify({username:user,password})
+        body: JSON.stringify({ username: user, password })
 
       })
-      const data=await response.json();
+      const data = await response.json();
       console.log(data);
+      const { status, message, err ,accessToken,username} = data;
+      if (status) {
+      alert("user logged in successfully")
+      
+       localStorage.setItem('name',username);
+       localStorage.setItem('token',accessToken);
+       setTimeout(()=>{
+        navigate('/')
+       })
+      
+      }
+      else if (err) {
+        const detail = err.details[0].message
+        console.log(detail);
+        error();
+      }
 
-    }catch(e){
-console.log(e);
+
+    } catch (e) {
+      console.log(e);
     }
   };
 

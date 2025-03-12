@@ -4,12 +4,12 @@ const jwt =require('jsonwebtoken')
 const register = async (req, res) => {
   try {
     const { username, email, password, role } = req.body;
-    if (!username || !email || !password || !role) {
-      return res.status(400).json({
-        status: false,
-        message: "All the fields are required. Please fill the information."
-      });
-    }
+    // if (!username || !email || !password || !role) {
+    //   return res.status(400).json({
+    //     status: false,
+    //     message: "All the fields are required. Please fill the information."
+    //   });
+    // }
 
     const userExist = await User.findOne({ $or:[{email},{username}]});
     if (userExist) {

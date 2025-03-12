@@ -7,19 +7,57 @@ import { Link, useNavigate } from 'react-router-dom';
 
 function Register() {
  const navigate=useNavigate()
-  const [Name, setName] = useState([]);
-  const [email, setEmail] = useState([]);
-  const [password, setPassword] = useState([]);
-
-  const handleSubmit = (e) => {
+  const [Name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+const handelChange=(e)=>{
+  const {name,value}=e.target
+  if(name==='Name'){
+    setName(value)
+  }
+  if(name==='email'){
+    setEmail(value)
+  }
+  if(name==='password'){
+    setPassword(value)
+  }
+  console.log(Name,email,password)
+}
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log('Registration data:', {
-      firstName,
-      Name,
-      email,
-      password,
-    });
+   if(!Name || !email || !password){
+     alert('All fields are required')
+   }else{
+    navigate('/')
+   }
     // Add logic to handle form submission here
+    try{
+      const url="http://localhost:3000/api/website/user/register"
+      const response=await fetch(url,{
+        method:"POST",
+        headers:{
+          'content-type':'application/json'
+        },
+        body:JSON.stringify({username:Name,email,password})
+      })
+      const data=await response.json();
+      console.log(data)
+      const {status,message,err}=data;
+      if(status){
+        alert('User registered successfully')
+        navigate('/login')
+      }
+      else if(err){
+        const detail=err.details[0].message
+        console.log(detail)
+        alert(detail)
+    
+      }
+
+    }
+    catch(e){
+      console.log(e)
+    }
   };
 
   return (
@@ -42,7 +80,7 @@ function Register() {
             name="Name"
             autoComplete="family-name"
             value={Name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={ handelChange}
             sx={{ mb: 2 }}
           />
           <TextField
@@ -52,7 +90,7 @@ function Register() {
             name="email"
             autoComplete="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handelChange}
             sx={{ mb: 2 }}
           />
           <TextField
@@ -63,7 +101,7 @@ function Register() {
             id="password"
             autoComplete="new-password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handelChange}
             sx={{ mb: 2 }}
           />
         </FormGroup>

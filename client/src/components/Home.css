@@ -1,0 +1,10 @@
+.images{
+padding: 24px;
+margin:24px;
+display: flex;
+background: rgba(255, 255, 255, 0.648);
+width: 400px;
+border-radius: 10px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
