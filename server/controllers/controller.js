@@ -84,6 +84,7 @@ const login=async(req,res)=>{
   res.status(200).json({
     status:true,
     message:"User logged in successfully",
+    username: existuser.username,
     accessToken
   })
   }

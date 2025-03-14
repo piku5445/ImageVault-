@@ -72,7 +72,7 @@ function LoginPage() {
         headers: {
           'content-type': 'application/json'
         },
-        body: JSON.stringify({ username: user, password })
+        body: JSON.stringify({ username:user, password })
 
       })
       const data = await response.json();
@@ -81,7 +81,7 @@ function LoginPage() {
       if (status) {
       alert("user logged in successfully")
       
-       localStorage.setItem('name',username);
+       localStorage.setItem('name',data.username);
        localStorage.setItem('token',accessToken);
        setTimeout(()=>{
         navigate('/')
