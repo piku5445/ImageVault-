@@ -4,6 +4,13 @@ import img1 from '../assets/img1.jpg'
 import { useNavigate } from 'react-router-dom'
 import "./Home.css"
 const Home = () => {
+  const cards = [
+    { title: 'Card 1', description: 'This is the description for card 1.' },
+    { title: 'Card 2', description: 'This is the description for card 2.' },
+    { title: 'Card 3', description: 'This is the description for card 3.' },
+    { title: 'Card 4', description: 'This is the description for card 4.' },
+  ];
+
 
   const [login,setLoggedin]=useState('')
   const[images,setImages]=useState([])
@@ -13,51 +20,35 @@ const Home = () => {
     setLoggedin(localStorage.getItem('name'))
   },[])
 
-  const uploadImag=async()=>{
 
-    try{
-      const url="http://localhost:3000/api/website/image/upload"
-      const response=await fetch(url,{
-        method:"POST",
-         headers:{
-          "Content-type":"application/json"
-         } 
-      })
-      
-
-
-    }catch(e){
-        alert(e)
-
-
-    }
-  }
-
-
-  const fetchProducts=async()=>{
-    try{
-
-
-
-      const url="http://localhost:3000/api/website/image/get"
+  const fetchProducts = async () => {
+    try {
+      const url = "http://localhost:3000/api/website/image/get"; // Ensure this matches your backend route
       const response = await fetch(url, {
         method: "GET",
         headers: {
-          "Authorization": `Bearer ${localStorage.getItem('token')}`, // Add 'Bearer ' prefix
+          "Authorization": `Bearer ${localStorage.getItem("token")}`,
           "Content-Type": "application/json",
         },
-        body:JSON.stringify({username:Name,email,password})
       });
-      
-      
-      const result=await response.json()
-      console.log(result)
-      setImages(result.data)
-
-    }catch(err){
-      console.log(err)
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      const result = await response.json();
+      console.log(result);
+  
+      if (result.success) {
+        setImages(result.data);
+      } else {
+        console.log("Failed to fetch images:", result.message);
+      }
+    } catch (err) {
+      console.error("Error fetching images:", err);
     }
-  }
+  };
+  
   useEffect(()=>{
     fetchProducts()
   },[])
@@ -78,6 +69,14 @@ const Home = () => {
          <ImageUpload/>
 
         </div>
+        <div className="card-container">
+      {cards.map((card, index) => (
+        <div key={index} className="card">
+          <h2 className="card-title">{card.title}</h2>
+          <p className="card-description">{card.description}</p>
+        </div>
+      ))}
+    </div>
         <h1>{login}</h1>
         <button onClick={handelLoggedout}>Logout</button>
         <div>{

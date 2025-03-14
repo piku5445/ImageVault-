@@ -8,11 +8,12 @@ const UploadImage=async(req,res)=>{
                 message:"please select file to upload"
             })
         }
+        const userId = req.userInfo.userId;
         const {url,publicId}=await uploadCloudinary(req.file.path)
         const newImage=new Image({
             url:url,
             publicId:publicId,
-            uploadedBy:req.userInfo.userId,
+            uploadedBy:userId,
         })
         await newImage.save()
             return res.status(201).json({
@@ -26,6 +27,12 @@ const UploadImage=async(req,res)=>{
     }
     catch(e){
         console.error(e)
+        res.status(500).json({
+          success: false,
+          message: "Error while uploading image",
+          error: e.message
+          
+        })
     }
 }
 const fetchImages=async(req,res)=>{
@@ -117,7 +124,7 @@ const deleteImageController=async(req,res)=>{
       //delete the image from cloudinary
       await cloudinary.uploader.destroy(image.publicId)
   //delete the image from database
-  await Image.findByIdAndUpdate(imageId)
+  await Image.findByIdAndDelete(imageId)
     res.status(200).json({
       success:true,
       message:"image deleted successfully"
