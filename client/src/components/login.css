@@ -4,7 +4,7 @@
     background-color: hsla(132, 53%, 40%, 0.3); 
 
    */
-   background: rgba(255, 255, 255, 0.648);
+   background: rgb(255, 255, 255);
     width: 400px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

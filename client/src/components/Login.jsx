@@ -137,7 +137,7 @@ function LoginPage() {
             <Button
               type="submit"
               variant="contained"
-              color="primary"
+              color="success"
               fullWidth
               sx={{ mt: 2 }}
             >
