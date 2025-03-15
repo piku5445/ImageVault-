@@ -84,7 +84,7 @@ function LoginPage() {
        localStorage.setItem('name',data.username);
        localStorage.setItem('token',accessToken);
        setTimeout(()=>{
-        navigate('/')
+        navigate('/home')
        })
       
       }
