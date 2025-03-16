@@ -31,7 +31,7 @@ function App() {
       <Routes>
         {/* Parent Route with Layout */}
         <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
+          <Route index element={<Landing />} />
           <Route path="home" element={
             <PrivateRoute>
                <Home />

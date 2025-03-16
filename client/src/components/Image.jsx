@@ -7,6 +7,27 @@ const ImageUpload = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [images, setImages] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(false);
+
+  // const handelImageClick=(index)=>{
+   
+  //   const  imageId=document.getElementById('card-image')
+  //   imageId.style.position=' relative'
+  //   imageId.style.padding='100px'
+  //   imageId.style.margin='100px'
+  //   imageId.padding='100px'
+  //   imageId.style.height='none'
+  //   imageId.style.width='500px'
+  //   imageId.style.height='500px'
+  //   setImage(image.index)
+  //   useEffect(()=>{
+  //     if(selectedImage){
+  //       setSelectedImage(true)
+
+  //     }
+  //   })
+
+  // }
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -100,7 +121,8 @@ const ImageUpload = () => {
     <div className="card-container" id="images">
         {images.map((image, index) => (
           <div key={index} className="card">
-            <img src={image.url} alt="Preview" width={200} />
+            {/* <img src={image.url} alt="Preview" width={200} id="card-image"  onClick={handelImageClick(index)}/> */}
+            <img src={image.url} alt="Preview" width={200} id="card-image"  />
             <h2 className="card-title">Image {index + 1}</h2>
             <p className="card-description">Uploaded by: {image.uploadedBy}</p>
           </div>

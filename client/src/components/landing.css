@@ -1,8 +1,69 @@
 .box {
-  position: absolute;
+  position: relative;
   height: 100%;
   width: 100%;
   padding: 100px;
-  margin: 20px;
-  background-color: rgb(207, 227, 209);
+  /* margin: 20px; */
+  background-color: rgba(2, 2, 2, 0.728);
+ 
+}
+.swiper {
+ 
+  height: 500px;
+  background-color: rgba(245, 245, 220, 0.5);
+  margin: 0%;
+  display: flex;
+  animation: forwards;
+align-self:center;
+  /* justify-content: center;
+  align-items: center; */
+  
+  /* padding: 100px;
+  border: 5px solid black; */
+}
+.slide1{
+  background-image: url("../assets/women.jpg");
+
+  margin: 0%;
+  height: 100%;
+  
+  background-size: cover;
+  background-position: center;
+  border: 1px solid black;
+}
+.slide2{
+  background-image: url("../assets/img2.jpg");
+  
+  height: 100%;
+
+  margin: 0%;
+  background-size: cover;
+  background-position: center; 
+  border: 1px solid black;
+}
+.slide3{
+  background-image: url("../assets/img3.jpg");
+
+  height: 100%;
+
+  margin: 0%;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid black;
+}
+.slide4{
+  background-image: url("../assets/img4.jpg");
+
+  height: 100%;
+  width:100%;
+padding: 100px;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid black;
+}
+
+.heading{
+  text-align: center;
+  color: aliceblue;
+  margin: 30px;
 }

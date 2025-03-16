@@ -22,7 +22,7 @@ const Home = () => {
   return (
     <div>
          
-      <div>
+      <div className='home'> 
         
         <div className='welcome'><h1>Welcome to Home Page {login}</h1></div>
         
