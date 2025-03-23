@@ -43,6 +43,11 @@ const Header = () => {
               <label>Register</label>
             </Link>
           </Button>
+          <Button>
+            <Link to="/home" style={{ color: "black" }}>
+              <label>Home</label>
+            </Link>
+          </Button>
           <Button  variant="contained" className='logout' onClick={handelLoggedout}>Logout</Button>
         </ButtonGroup>
       </div>
