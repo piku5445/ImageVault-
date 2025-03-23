@@ -8,7 +8,8 @@ import Layout from "./components/Layout";
 import Header from "./components/Header";
 import Forget from "./components/forget";
 import PrivateRoute from "./components/PrivateRoute.jsx";
-import Landing from "./components/landing";
+import Landing from "./components/landing"
+import ImageView from "./components/ImageViwer";
 function App() {
   return (
     <Router>
@@ -41,6 +42,7 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="forget" element={<Forget />} />
+          <Route path="photo/:id" element={<ImageView/>} />
         </Route>
       </Routes>
     </Router>
