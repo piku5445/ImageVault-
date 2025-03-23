@@ -1,50 +1,5 @@
-// import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 
-// import { Swiper, SwiperSlide } from 'swiper/react';
-// import './landing.css';
-// // Import Swiper styles
-// import 'swiper/css';
-// import { useSwiper } from 'swiper/react'
-// import 'swiper/css/navigation';
-// import 'swiper/css/pagination';
-// import 'swiper/css/scrollbar';
-// function landing() {
-//   const swiper = useSwiper();
-//   return (
-//     <>
-   
-//       <div className="box">
-//       <div className='heading'><h1>Image Vault</h1></div>
-//     <Swiper
-//     // install Swiper modules
-//     modules={[Navigation, Pagination, Scrollbar, A11y]}
-//     spaceBetween={50}
-//     slidesPerView={3}
-//     navigation
-//     pagination={{ clickable: true }}
-//     scrollbar={{ draggable: true }}
-//     onSwiper={(swiper) => console.log(swiper)}
-//     onSlideChange={() => console.log('slide change')}
-//   >
-//     <SwiperSlide className='slide1'></SwiperSlide>
-//     <SwiperSlide className='slide2'></SwiperSlide>
-//     <SwiperSlide className='slide3'></SwiperSlide>
-//     <SwiperSlide className='slide4'></SwiperSlide>
-//     {/* <SwiperSlide>
-//     {({ isActive }) => (
-//       <div>Current slide is {isActive ? 'active' : 'not active'}</div>
-//     )}
-//   </SwiperSlide>
-//    */}
-//    <button onClick={() => swiper.slideNext()}>Slide to the next slide</button>
-//   </Swiper>
-//   </div>
-//     </>
-  
-//   )
-// }
 
-// export default landing
 
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay, EffectCoverflow } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
