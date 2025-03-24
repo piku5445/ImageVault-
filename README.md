@@ -1,0 +1,1 @@
+A full-stack web application that allows users to upload, view, and manage images seamlessly, similar to Google Photos. This project includes secure image storage, real-time previews, and a responsive UI for an enhanced user experience.
