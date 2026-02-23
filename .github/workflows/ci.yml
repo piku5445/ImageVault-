@@ -3,9 +3,9 @@ name: build-and-lint
 # trigger on push to these branches
 on:
   push:
-    branches:[main,dev]
+    branches: [main, dev]
   pull_request:
-    branches:[main,dev]
+    branches: [main, dev]
 #defining jobs
 jobs:
   build-and-lint:
@@ -29,15 +29,15 @@ jobs:
         run: npm run lint || true
 
       - name: Install frontend dependencies
-      working-directory: client
-      run: npm ci
+        working-directory: client
+        run: npm ci
 
-    - name: Lint frontend
-      working-directory: client
-      run: npm run lint || true
+      - name: Lint frontend
+        working-directory: client
+        run: npm run lint || true
 
-    - name: Build backend image
-      run: docker build -t backend ./server
+      - name: Build backend image
+        run: docker build -t backend ./server
 
-    - name: Build frontend image
-      run: docker build -t frontend ./client
+      - name: Build frontend image
+        run: docker build -t frontend ./client
