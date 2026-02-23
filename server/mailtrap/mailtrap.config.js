@@ -1,4 +1,4 @@
-const { MailtrapClient } = require("mailtrap");
+const { MailtrapClient } = require('mailtrap');
 
 const TOKEN = process.env.MAILTRAP_TOKEN;
 export const client = new MailtrapClient({
@@ -6,6 +6,6 @@ export const client = new MailtrapClient({
 });
 
 export const sender = {
-  email: "hello@demomailtrap.co",
-  name: "piku Test",
+  email: 'hello@demomailtrap.co',
+  name: 'piku Test',
 };

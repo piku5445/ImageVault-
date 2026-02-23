@@ -2,13 +2,13 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 import "./App.css";
 import Login from "./components/Login";
-import Register from './components/register';
+import Register from './components/Register';
 import Home from "./components/Home";
 import Layout from "./components/Layout";
 import Header from "./components/Header";
 import Forget from "./components/forget";
 import PrivateRoute from "./components/PrivateRoute.jsx";
-import Landing from "./components/landing"
+import Landing from "./components/Landing"
 import ImageView from "./components/ImageViwer";
 function App() {
   return (

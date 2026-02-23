@@ -16,9 +16,9 @@ const uploadCloudinary = async (filepath) => {
       publicId: result.public_id,
     };
   } catch (error) {
-    console.error("Error while uploading the file to Cloudinary", error);
-    throw new Error("Error while uploading the file to Cloudinary");
+    console.error('Error while uploading the file to Cloudinary', error);
+    throw new Error('Error while uploading the file to Cloudinary');
   }
 };
 
-module.exports = { uploadCloudinary ,cloudinary};
+module.exports = { uploadCloudinary, cloudinary };
