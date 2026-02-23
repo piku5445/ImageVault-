@@ -1,26 +1,18 @@
-import React, { useState } from "react";
-import {
-  Container,
-  TextField,
-  Button,
-  Typography,
-  Box,
-  Card,
-  CardContent,
-} from "@mui/material";
+import React, { useState } from 'react';
+import { Container, TextField, Button, Typography, Box, Card, CardContent } from '@mui/material';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for react-toastify
-import { Link, useNavigate } from "react-router-dom";
-import "./Login.css";
+import { Link, useNavigate } from 'react-router-dom';
+import './Login.css';
 
 function LoginPage() {
   const navigate = useNavigate();
-  const [user, setUser] = useState("");
-  const [password, setPassword] = useState("");
+  const [user, setUser] = useState('');
+  const [password, setPassword] = useState('');
 
   const error = () => {
-    toast.error("All feilds are required", {
-      position: "top-center",
+    toast.error('All feilds are required', {
+      position: 'top-center',
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -31,8 +23,8 @@ function LoginPage() {
   };
 
   const success = () => {
-    toast.success("Login successful", {
-      position: "top-center",
+    toast.success('Login successful', {
+      position: 'top-center',
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -60,41 +52,36 @@ function LoginPage() {
     } else {
       success();
     }
-    console.log("Login data:", {
+    console.log('Login data:', {
       user,
       password,
     });
     // Add logic to handle form submission here
     try {
-      const url = "http://localhost:3000/api/website/user/login";
+      const url = 'http://localhost:3000/api/website/user/login';
       const response = await fetch(url, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          'content-type': 'application/json'
+          'content-type': 'application/json',
         },
-        body: JSON.stringify({ username:user, password })
-
-      })
+        body: JSON.stringify({ username: user, password }),
+      });
       const data = await response.json();
       console.log(data);
-      const { status, message, err ,accessToken,username} = data;
+      const { status, message, err, accessToken, username } = data;
       if (status) {
-      alert("user logged in successfully")
-      
-       localStorage.setItem('name',data.username);
-       localStorage.setItem('token',accessToken);
-       setTimeout(()=>{
-        navigate('/home')
-       })
-      
-      }
-      else if (err) {
-        const detail = err.details[0].message
+        alert('user logged in successfully');
+
+        localStorage.setItem('name', data.username);
+        localStorage.setItem('token', accessToken);
+        setTimeout(() => {
+          navigate('/home');
+        });
+      } else if (err) {
+        const detail = err.details[0].message;
         console.log(detail);
         error();
       }
-
-
     } catch (e) {
       console.log(e);
     }
@@ -105,16 +92,16 @@ function LoginPage() {
       <CardContent>
         <Box
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
           }}
           className="login"
         >
           <Typography variant="h4" component="h1" gutterBottom>
             Login
           </Typography>
-          <form onSubmit={handleSubmit} style={{ width: "100%" }}>
+          <form onSubmit={handleSubmit} style={{ width: '100%' }}>
             <TextField
               label="username"
               variant="outlined"
@@ -134,21 +121,16 @@ function LoginPage() {
               value={password}
               onChange={handleChange}
             />
-            <Button
-              type="submit"
-              variant="contained"
-              color="success"
-              fullWidth
-              sx={{ mt: 2 }}
-            >
+            <Button type="submit" variant="contained" color="success" fullWidth sx={{ mt: 2 }}>
               Login
             </Button>
             <Typography variant="body2" align="center" sx={{ mt: 2 }}>
-              Don't have an account?{" "}
-              <Link to="/register">Register</Link>
+              Don't have an account? <Link to="/register">Register</Link>
             </Typography>
             <Typography variant="body2" align="center" sx={{ mt: 2 }}>
-              <a href="#" onClick={() => navigate('/forget')}>Forget Password?</a>
+              <a href="#" onClick={() => navigate('/forget')}>
+                Forget Password?
+              </a>
             </Typography>
           </form>
         </Box>

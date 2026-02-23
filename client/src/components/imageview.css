@@ -1,37 +1,53 @@
 /* Fullscreen View */
 .fullscreen-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    z-index: 1000;
-  }
-  
-  /* Fullscreen Image */
-  .fullscreen-image {
-    max-width: 90%;
-    max-height: 80%;
-    border-radius: 10px;
-  }
-  
-  /* Navigation Buttons */
-  .prev-btn, .next-btn, .back-btn {
-    position: absolute;
-    font-size: 30px;
-    color: white;
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .prev-btn { left: 20px; }
-  .next-btn { right: 20px; }
-  .back-btn { top: 20px; left: 20px; font-size: 20px; background: #333; padding: 10px 20px; border-radius: 5px; }
-  .prev-btn:disabled, .next-btn:disabled { color: grey; cursor: not-allowed; }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1000;
+}
+
+/* Fullscreen Image */
+.fullscreen-image {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 10px;
+}
+
+/* Navigation Buttons */
+.prev-btn,
+.next-btn,
+.back-btn {
+  position: absolute;
+  font-size: 30px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.prev-btn {
+  left: 20px;
+}
+.next-btn {
+  right: 20px;
+}
+.back-btn {
+  top: 20px;
+  left: 20px;
+  font-size: 20px;
+  background: #333;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+.prev-btn:disabled,
+.next-btn:disabled {
+  color: grey;
+  cursor: not-allowed;
+}

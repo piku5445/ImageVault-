@@ -59,11 +59,7 @@ const ImageViwer = () => {
       </button>
       {/* Display the current image */}
       {images.length > 0 && currentImage >= 0 && currentImage < images.length ? (
-        <img
-          src={images[currentImage]?.url}
-          alt="Full View"
-          className="fullscreen-image"
-        />
+        <img src={images[currentImage]?.url} alt="Full View" className="fullscreen-image" />
       ) : (
         <p>Loading image...</p>
       )}

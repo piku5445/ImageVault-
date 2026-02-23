@@ -1,12 +1,12 @@
-import React from 'react'
-import '../App.css'
-import { Outlet } from 'react-router-dom'
+import React from 'react';
+import '../App.css';
+import { Outlet } from 'react-router-dom';
 const Layout = () => {
   return (
-    <div className='background'>
-        <Outlet/>
+    <div className="background">
+      <Outlet />
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

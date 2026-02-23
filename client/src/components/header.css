@@ -1,59 +1,59 @@
 /* Header Styling */
 .header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.1);  /* Soft bottom border */
-    background: transparent;  /* Allows website background to show */
-    backdrop-filter: blur(5px); /* Adds slight blur effect */
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1); /* Soft bottom border */
+  background: transparent; /* Allows website background to show */
+  backdrop-filter: blur(5px); /* Adds slight blur effect */
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 /* Logo Styling */
 .logo img {
-    height: 50px;
-    width: 50px;
-    object-fit: contain;
+  height: 50px;
+  width: 50px;
+  object-fit: contain;
 }
 
 /* Button Group Styling */
 .button1 {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 .button1 button {
-    background-color: rgba(10, 137, 146, 0.475) !important; /* Semi-transparent */
-    color: black !important;
-    text-transform: uppercase;
-    font-weight: bold;
-    padding: 8px 16px;
-    border-radius: 8px;
-    transition: all 0.3s ease-in-out;
+  background-color: rgba(10, 137, 146, 0.475) !important; /* Semi-transparent */
+  color: black !important;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
 }
 
 /* Button Hover Effect */
 .button1 button:hover {
-    background-color: rgba(2, 120, 102, 0.6) !important; /* Lighter transparency */
-    transform: scale(1.05);
+  background-color: rgba(2, 120, 102, 0.6) !important; /* Lighter transparency */
+  transform: scale(1.05);
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        text-align: center;
-        padding: 10px;
-    }
+  .header {
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
+  }
 
-    .button1 {
-        position: relative;
-        left: 0;
-        margin-top: 10px;
-    }
+  .button1 {
+    position: relative;
+    left: 0;
+    margin-top: 10px;
+  }
 }

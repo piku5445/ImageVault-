@@ -41,7 +41,7 @@
   color: #888;
 } */
 .background {
-  background-image: url("./assets/img1.jpg"); /* Set your image */
+  background-image: url('./assets/img1.jpg'); /* Set your image */
   background-size: cover;
   background-position: center;
   min-height: 100vh;
