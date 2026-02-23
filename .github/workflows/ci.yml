@@ -7,37 +7,37 @@ on:
   pull_request:
     branches:[main,dev]
 #defining jobs
-  jobs:
-    build-and-lint:
-      runs-on: ubuntu-latest
+jobs:
+  build-and-lint:
+    runs-on: ubuntu-latest
 
-      steps:
-        - name: Checkout repo
-          uses: actions/checkout@v3
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
-        - name: Setup Node
-          uses: actions/setup-node@v3
-          with:
-            node-version: 20
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
 
-        - name: Install backend dependencies
-          working-directory: server
-          run: npm ci
-
-        - name: Lint backend
-          working-directory: server
-          run: npm run lint || true
-
-        - name: Install frontend dependencies
-        working-directory: client
+      - name: Install backend dependencies
+        working-directory: server
         run: npm ci
 
-      - name: Lint frontend
-        working-directory: client
+      - name: Lint backend
+        working-directory: server
         run: npm run lint || true
 
-      - name: Build backend image
-        run: docker build -t backend ./server
+      - name: Install frontend dependencies
+      working-directory: client
+      run: npm ci
 
-      - name: Build frontend image
-        run: docker build -t frontend ./client
+    - name: Lint frontend
+      working-directory: client
+      run: npm run lint || true
+
+    - name: Build backend image
+      run: docker build -t backend ./server
+
+    - name: Build frontend image
+      run: docker build -t frontend ./client
