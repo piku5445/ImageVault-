@@ -1,3 +1,4 @@
+import GoogleIcon from "@mui/icons-material/Google";
 import React, { useState } from "react";
 import {
   Container,
@@ -5,104 +6,110 @@ import {
   Button,
   Typography,
   Box,
-  Card,
   CardContent,
 } from "@mui/material";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for react-toastify
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 
 function LoginPage() {
+
   const navigate = useNavigate();
+
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
 
-  const error = () => {
-    toast.error("All feilds are required", {
+  const error = (msg) => {
+    toast.error(msg, {
       position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
+      autoClose: 4000,
     });
   };
 
-  const success = () => {
-    toast.success("Login successful", {
+  const success = (msg) => {
+    toast.success(msg, {
       position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
+      autoClose: 3000,
     });
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === 'user') {
+
+    if (name === "user") {
       setUser(value);
     }
-    if (name === 'password') {
+
+    if (name === "password") {
       setPassword(value);
     }
-    console.log(user, password);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     if (!user || !password) {
-      error();
-    } else {
-      success();
+      error("All fields are required");
+      return;
     }
-    console.log("Login data:", {
-      user,
-      password,
-    });
-    // Add logic to handle form submission here
-    try {
-      const url = "http://localhost:3000/api/website/user/login";
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify({ username:user, password })
-
-      })
-      const data = await response.json();
-      console.log(data);
-      const { status, message, err ,accessToken,username} = data;
-      if (status) {
-      alert("user logged in successfully")
-      
-       localStorage.setItem('name',data.username);
-       localStorage.setItem('token',accessToken);
-       setTimeout(()=>{
-        navigate('/home')
-       })
-      
-      }
-      else if (err) {
-        const detail = err.details[0].message
-        console.log(detail);
-        error();
-      }
 
 
-    } catch (e) {
-      console.log(e);
+
+try {
+
+  const url = "http://localhost:3000/auth/login";
+
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      email: user,
+      password: password,
+    }),
+  });
+
+  const data = await response.json();
+
+  // HANDLE BACKEND ERRORS
+  if (!response.ok) {
+
+    if (data.isEmailVerified === false) {
+      error("Please verify your email before logging in");
+    } 
+    else {
+      error(data.message || "Login failed");
     }
+
+    return;
+  }
+
+  // SUCCESS CASE
+  if (data.accessToken) {
+
+    localStorage.setItem("token", data.accessToken);
+    localStorage.setItem("name", data.user.name);
+    localStorage.setItem("email", data.user.email);
+
+    success("Login successful");
+
+    setTimeout(() => {
+      navigate("/home");
+    }, 1000);
+  }
+
+} catch (err) {
+  console.log(err);
+  error("Server error");
+}
   };
 
   return (
     <Container maxWidth="xs" sx={{ mt: 8 }}>
       <CardContent>
+
         <Box
           sx={{
             display: "flex",
@@ -111,12 +118,15 @@ function LoginPage() {
           }}
           className="login"
         >
+
           <Typography variant="h4" component="h1" gutterBottom>
             Login
           </Typography>
+
           <form onSubmit={handleSubmit} style={{ width: "100%" }}>
+
             <TextField
-              label="username"
+              label="Email"
               variant="outlined"
               fullWidth
               margin="normal"
@@ -124,16 +134,18 @@ function LoginPage() {
               value={user}
               onChange={handleChange}
             />
+
             <TextField
               label="Password"
               type="password"
               variant="outlined"
               fullWidth
-              name="password"
               margin="normal"
+              name="password"
               value={password}
               onChange={handleChange}
             />
+
             <Button
               type="submit"
               variant="contained"
@@ -143,19 +155,38 @@ function LoginPage() {
             >
               Login
             </Button>
+
+          <Button
+  variant="outlined"
+  startIcon={<GoogleIcon />}
+  fullWidth
+  sx={{ mt: 2 }}
+  onClick={() =>
+    (window.location.href = "http://localhost:3000/auth/google")
+  }
+>
+  Continue with Google
+</Button>
+
             <Typography variant="body2" align="center" sx={{ mt: 2 }}>
-              Don't have an account?{" "}
-              <Link to="/register">Register</Link>
+              Don't have an account? <Link to="/register">Register</Link>
             </Typography>
+
             <Typography variant="body2" align="center" sx={{ mt: 2 }}>
-              <a href="#" onClick={() => navigate('/forget')}>Forget Password?</a>
+              <Link to="/forgot">Forgot Password?</Link>
             </Typography>
+
           </form>
+
         </Box>
+
       </CardContent>
-      <ToastContainer /> {/* Add ToastContainer here */}
+
+      <ToastContainer />
+
     </Container>
   );
 }
 
 export default LoginPage;
+

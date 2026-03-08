@@ -1,0 +1,12 @@
+const router =require("express").Router();
+const {register,login,verifyEmailHandler,refreshHandler,logoutHandler,forgotPasswordHandler,resetPasswordHandler,googleAuthCallbackHandler,googleAuthStartHandler}=require("../controller/auth/authcontroller");
+router.post("/register",register);
+router.post("/login",login);
+router.get("/verify-email",verifyEmailHandler);
+router.post("/refresh",refreshHandler);
+router.post("/logout",logoutHandler);
+router.post("/forgot-password",forgotPasswordHandler);  
+router.post("/reset-password",resetPasswordHandler);
+router.get("/google", googleAuthStartHandler);
+router.get("/google/callback", googleAuthCallbackHandler);
+module.exports = router;

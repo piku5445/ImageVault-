@@ -20,7 +20,7 @@ const ImageUpload = () => {
 
   const fetchProducts = async () => {
     try {
-      const url = "http://localhost:3000/api/website/image/get"; // Ensure this matches your backend route
+      const url = "http://localhost:3000/image/get"; // Ensure this matches your backend route
       const response = await fetch(url, {
         method: "GET",
         headers: {
@@ -34,7 +34,7 @@ const ImageUpload = () => {
       }
 
       const result = await response.json();
-      console.log(result);
+      // console.log(result);
 
       if (result.success) {
         setImages(result.data);
@@ -62,7 +62,7 @@ const ImageUpload = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:3000/api/website/image/upload",
+        "http://localhost:3000/image/upload",
         {
           method: "POST",
           headers: {

@@ -1,41 +1,28 @@
-import React, { useState ,useEffect} from 'react'
+import React, { useState } from 'react'
 import ImageUpload from './Image'
-import img1 from '../assets/img1.jpg'
 import { useNavigate } from 'react-router-dom'
 import "./Home.css"
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
+
 const Home = () => {
-  
-  
+const user = JSON.parse(localStorage.getItem("user"));
 
-  const [login,setLoggedin]=useState('')
-  // const[images,setImages]=useState([])
- 
-  const navigate=useNavigate()
-  useEffect(()=>{
-    setLoggedin(localStorage.getItem('name'))
-  },[])
+  const navigate = useNavigate()
 
-  
-  
   return (
     <div>
-         
+
       <div className='home'> 
         
-        <div className='welcome'><h1>Welcome to Home Page {login}</h1></div>
-        
-        <div >
-         <ImageUpload/>
-
+        <div className='welcome'>
+          <h1>Welcome {user?.name}</h1>
         </div>
         
-        {/* <Button  variant="contained" className='logout' onClick={handelLoggedout}>Logout</Button> */}
-    
-      
-      
+        <div>
+          <ImageUpload/>
+        </div>
+
       </div>
+
     </div>
   )
 }

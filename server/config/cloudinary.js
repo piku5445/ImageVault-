@@ -1,12 +1,14 @@
-const cloudinary = require('cloudinary').v2;
-require('dotenv').config();
+const cloudinary = require("../config/cloudinary");
 
-// Configure Cloudinary with your credentials
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUD_SECRET_KEY,
-});
+const uploadCloudinary = async (filePath) => {
+  const result = await cloudinary.uploader.upload(filePath, {
+    folder: "imagevault"
+  });
 
+  return {
+    url: result.secure_url,
+    publicId: result.public_id
+  };
+};
 
-module.export=cloudinary
+module.exports = { uploadCloudinary, cloudinary };

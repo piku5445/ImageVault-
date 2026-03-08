@@ -35,3 +35,28 @@
   .back-btn { top: 20px; left: 20px; font-size: 20px; background: #333; padding: 10px 20px; border-radius: 5px; }
   .prev-btn:disabled, .next-btn:disabled { color: grey; cursor: not-allowed; }
   
+  /* Add this to your existing imageview.css */
+
+.delete-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: rgba(220, 53, 69, 0.85);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.2s ease;
+}
+
+.delete-btn:hover:not(:disabled) {
+  background-color: rgba(200, 35, 51, 1);
+}
+
+.delete-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
