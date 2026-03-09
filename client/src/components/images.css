@@ -1,4 +1,4 @@
-/* Container for all images */
+/* 
 .container{
   width: 100%;
   height: 100%;
@@ -19,8 +19,7 @@ flex-wrap: wrap;
     margin-top: 100px;
     align-items: center;
   }
-  
-  /* Individual card styling */
+
   .card {
     background-color: #05ab66;
     border-radius: 10px;
@@ -29,7 +28,7 @@ flex-wrap: wrap;
     overflow: hidden;
   }
   
-  /* Image styling within the card */
+ 
   .card img {
     width: 100%;
     height: 150px; 
@@ -38,8 +37,7 @@ flex-wrap: wrap;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
   }
-  
-  /* Card title and description */
+
   .card-content {
     padding: 20px;
   }
@@ -55,7 +53,7 @@ flex-wrap: wrap;
     color: #555;
   }
   
-  /* Optional: Add hover effects for a more interactive feel */
+
   .card:hover {
     transform: scale(1.05);
     cursor: pointer;
@@ -69,4 +67,363 @@ flex-wrap: wrap;
     margin: 100px auto;
     background-color: rgba(255, 255, 255, 0.986);
     border-radius: 20%;
+} */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ── Card Grid ── */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+  padding: 0 32px 40px;
+}
+
+/* ── Individual Card ── */
+.card {
+  background: rgba(30, 80, 50, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25), 0 1px 0 rgba(255,255,255,0.08) inset;
+  border: 1px solid rgba(127, 184, 150, 0.25);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: cardIn 0.5s ease both;
+}
+.card:nth-child(1) { animation-delay: 0.05s; }
+.card:nth-child(2) { animation-delay: 0.1s; }
+.card:nth-child(3) { animation-delay: 0.15s; }
+.card:nth-child(4) { animation-delay: 0.2s; }
+.card:nth-child(5) { animation-delay: 0.25s; }
+.card:nth-child(6) { animation-delay: 0.3s; }
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+}
+
+/* ── Card Image ── */
+.card-img-wrapper {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+}
+
+.card-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .card-img-wrapper img {
+  transform: scale(1.06);
+}
+
+/* Overlay on hover */
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 58, 42, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .card-overlay {
+  opacity: 1;
+}
+
+.card-overlay-icon {
+  font-size: 2rem;
+  transform: scale(0.7);
+  transition: transform 0.3s ease;
+}
+
+.card:hover .card-overlay-icon {
+  transform: scale(1);
+}
+
+/* Index badge */
+.card-index {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(26, 58, 42, 0.75);
+  color: #c9a84c;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  padding: 3px 10px;
+  border-radius: 100px;
+  backdrop-filter: blur(6px);
+}
+
+/* ── Card Body ── */
+.card-body {
+  padding: 14px 16px 16px;
+  background: rgba(20, 60, 38, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.card-title {
+  color: #f5f0e8;  /* was #1a2a1e */
+}
+
+/* .card-description {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  color: #888;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+} */
+.card-description {
+  color: rgba(200, 220, 210, 0.7);
+}
+.card-id-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #7fb896;
+  flex-shrink: 0;
+}
+
+/* ── Empty State ── */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: rgba(255,255,255,0.35);
+}
+
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: 12px;
+}
+
+.empty-state p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+}
+
+/* ── Upload Section ── */
+.upload-section {
+  max-width: 520px;
+  margin: 20px auto 80px;
+  padding: 0 24px;
+}
+
+.upload-section-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.upload-section-header h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: #f5f0e8;
+  margin-bottom: 4px;
+}
+
+.upload-section-header p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  color: #5a7a65;
+}
+
+/* ── Drop Zone ── */
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.drop-zone {
+  display: block;
+  border: 2px dashed rgba(127, 184, 150, 0.45);
+  border-radius: 16px;
+  background: rgba(255,255,255,0.04);
+  cursor: pointer;
+  transition: border-color 0.3s, background 0.3s;
+  overflow: hidden;
+  min-height: 160px;
+}
+
+.drop-zone:hover,
+.drop-zone.drag-active {
+  border-color: #7fb896;
+  background: rgba(127,184,150,0.08);
+}
+
+.drop-zone-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  gap: 6px;
+}
+
+.drop-icon {
+  font-size: 2.4rem;
+  margin-bottom: 4px;
+}
+
+.drop-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  color: #f5f0e8;
+  font-weight: 500;
+}
+
+.drop-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  color: #5a7a65;
+}
+
+.file-input-hidden {
+  display: none;
+}
+
+/* Preview inside drop zone */
+.preview-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+}
+
+.preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.preview-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+  color: white;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+}
+
+.drop-zone:hover .preview-overlay {
+  opacity: 1;
+}
+
+/* ── Upload Button ── */
+.upload-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #2d5a3d, #4a7c5f);
+  color: #f5f0e8;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 16px rgba(45, 90, 61, 0.4);
+}
+
+.upload-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(45, 90, 61, 0.5);
+}
+
+.upload-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Spinner */
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(245,240,232,0.3);
+  border-top-color: #f5f0e8;
+  border-radius: 50%;
+  display: inline-block;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Lightbox ── */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 85vh;
+  border-radius: 12px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.lightbox-close:hover {
+  background: rgba(255,255,255,0.22);
 }
