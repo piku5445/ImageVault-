@@ -3,11 +3,11 @@ import { Navigate, useLocation } from 'react-router-dom';
 
 function PrivateRoute({ children }) {
   const token = localStorage.getItem('token');
-  const name = localStorage.getItem('name');
+  const email = localStorage.getItem('email');
 
   const location = useLocation();
 
-  if (!token || !name) {
+  if (!token || !email) {
     return <Navigate to="/landing" replace state={{ from: location }} />;
   }
 

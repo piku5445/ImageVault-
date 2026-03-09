@@ -5,14 +5,16 @@ const Google = () => {
     const [params] = useSearchParams();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = params.get("token");
+ useEffect(() => {
+  const token = params.get("token");
 
-    if (token) {
-      localStorage.setItem("token", token);
-      navigate("/home");
-    }
-  }, []);
+  console.log("Google token:", token); // debugging
+
+  if (token) {
+    localStorage.setItem("token", token);
+    navigate("/home");
+  }
+}, [params, navigate]);
 
   return (
      <div>Logging you in...</div>

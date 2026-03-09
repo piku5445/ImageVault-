@@ -170,14 +170,7 @@ const login=async(req,res)=>{
         isEmailVerified:false
     })
 }
-//    const accessToken = createAccessToken(user._id, user.role, user.tokenVersion);
 
-
-
-// const refreshToken = createRefreshToken(
-//   user._id,
-//   user.tokenVersion
-// );
 const accessToken = createAccessToken(
   user._id.toString(),
   user.role,
@@ -229,16 +222,7 @@ async function refreshHandler(req, res) {
       return res.status(401).json({ message: "Refresh token invalidated" });
     }
 
-    // const newAccessToken = createAccessToken(
-    //   user.id,
-    //   user.role,
-    //   user.tokenVersion
-    // );
-
-    // const newRefreshToken = createRefreshToken(
-    //   user.id,
-    //   user.tokenVersion
-    // );
+   
 const newAccessToken = createAccessToken(
   user._id.toString(),
   user.role,
@@ -471,16 +455,6 @@ async function googleAuthCallbackHandler(req, res) {
     twoFactorEnabled: false,
   });
 }
-    // const accessToken = createAccessToken(
-    //   user.id,
-    //   user.role,
-    //   user.tokenVersion
-    // );
-
-    // const refreshToken = createRefreshToken(
-    //   user.id,
-    //   user.tokenVersion
-    // );
 const accessToken = createAccessToken(
   user._id.toString(),
   user.role,
@@ -504,16 +478,6 @@ const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
 return res.redirect(
   `${FRONTEND_URL}/google?token=${accessToken}`
 );
-    // return res.json({
-    //   message: "Google login successfully",
-    //   accessToken,
-    //   user: {
-    //     id: user.id,
-    //     email: user.email,
-    //     role: user.role,
-    //     isEmailVerified: user.isEmailVerified,
-    //   },
-    // });
 
   } catch (err) {
     console.log(err);
